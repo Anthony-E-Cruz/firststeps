@@ -6,7 +6,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <meta property="og:title" content="My page title" key="title" />
-          <link rel="stylesheet" href="/_next/static/style.css" />
+          {/* <link rel="stylesheet" href="/_next/static/style.css" /> */}
         </Head>
         <body>
           <Main />

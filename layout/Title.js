@@ -1,5 +1,5 @@
 export default ({ title }) => (
   <title>
-    {`${title} | My Awesome Website`}
+    {`${title} | First Steps Nursery`}
   </title>
 )

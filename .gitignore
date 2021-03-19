@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+#MongoDB config key
+/config
+
 # production
 /build
 
