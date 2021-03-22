@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
@@ -31,12 +31,16 @@ app.prepare()
     const subRoutes = require("./routes/subscription.js");
     const authRoutes = require("./routes/user.js");
 
-    server.use("/api", subRoutes(server));
-    server.use("/api", authRoutes(server));
+    server.use("/express_api", subRoutes(server));
+    server.use("/express_api", authRoutes(server));
 
     server.get("*", (req, res) => {
       return handle(req, res);
     });
+
+    server.post('*', (req, res) => {
+      return handle(req, res)
+    })
 
     server.listen(PORT, err => {
       if (err) throw err;

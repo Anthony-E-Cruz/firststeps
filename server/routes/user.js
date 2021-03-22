@@ -9,13 +9,17 @@ const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
 function routes(app) {
-  router.get("/user", (req, res) => {
-    res.end("this is the user route");
-  });
+  router.post("/user", (req, res) => {
+    // res.end("this is the user route");
+    console.log("express req", req.body)
+    const currentUser = User.findOne(req.body.email)
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
+    return currentUser
+  })
 
   router.post('/register', (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
-
     if (!isValid) {
       return res.status(400).json(errors);
     }
@@ -25,8 +29,8 @@ function routes(app) {
           return res.status(400).json({ email: "A user has already registered with this email address" })
         } else {
           const newUser = new User({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
             password: req.body.password
           })
@@ -46,8 +50,6 @@ function routes(app) {
 
   router.post('/login', (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
-
-    console.log(errors);
 
     if (!isValid) {
       return res.status(400).json(errors);
@@ -74,7 +76,9 @@ function routes(app) {
                 (err, token) => {
                   res.json({
                     success: true,
-                    token: 'Bearer ' + token
+                    token: 'Bearer ' + token,
+                    id: user.id,
+                    email: user.email,
                   });
                 });
             } else {
