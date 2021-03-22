@@ -8,7 +8,6 @@ import Header from '../components/header'
 
 const Home = () => {
   const user = useUser()
-  console.log("user*****", user)
   return (
     <Page className={styles.container}>
       <Head>

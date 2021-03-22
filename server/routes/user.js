@@ -10,8 +10,6 @@ const validateLoginInput = require('../validation/login');
 
 function routes(app) {
   router.post("/user", (req, res) => {
-    // res.end("this is the user route");
-    console.log("express req", req.body)
     const currentUser = User.findOne(req.body.email)
       .then(user => res.json(user))
       .catch(err => console.log(err));

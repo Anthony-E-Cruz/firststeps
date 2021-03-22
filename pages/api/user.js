@@ -4,7 +4,6 @@ import { findUser } from '../../lib/user'
 export default async function user(req, res) {
   try {
     const session = await getLoginSession(req)
-    console.log("get-login-sesh", session)
     res.status(200).json(session)
   } catch (error) {
     res.end('Authentication token is invalid, please log in')
