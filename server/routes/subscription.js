@@ -16,7 +16,6 @@ function routes(app) {
   router.post('/subscription',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-      console.log(req.body)
       const { isValid, errors } = validateSubscriptionInput(req.body);
 
       if (!isValid) {

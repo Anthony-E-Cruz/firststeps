@@ -3,27 +3,26 @@ const validText = require('./valid-text');
 
 module.exports = function validateRegisterInput(data) {
   let errors = {};
-
-  data.firstname = validText(data.firstname) ? data.firstname : '';
-  data.lastname = validText(data.lastname) ? data.lastname : '';
+  data.firstName = validText(data.firstName) ? data.firstName : '';
+  data.lastName = validText(data.lastName) ? data.lastName : '';
   data.email = validText(data.email) ? data.email : '';
   data.password = validText(data.password) ? data.password : '';
   data.password2 = validText(data.password2) ? data.password2 : '';
 
-  if (!Validator.isLength(data.firstname, { min: 2, max: 30 })) {
-    errors.firstname = 'first name must be between 2 and 30 characters';
+  if (!Validator.isLength(data.firstName, { min: 2, max: 30 })) {
+    errors.firstName = 'first name must be between 2 and 30 characters';
   }
 
-  if (Validator.isEmpty(data.firstname)) {
-    errors.firstname = 'firstname field is required';
+  if (Validator.isEmpty(data.firstName)) {
+    errors.firstName = 'firstname field is required';
   }
 
-  if (!Validator.isLength(data.lastname, { min: 2, max: 30 })) {
-    errors.lastname = 'last name must be between 2 and 30 characters';
+  if (!Validator.isLength(data.lastName, { min: 2, max: 30 })) {
+    errors.lastName = 'last name must be between 2 and 30 characters';
   }
 
-  if (Validator.isEmpty(data.lastname)) {
-    errors.lastname = 'last name field is required';
+  if (Validator.isEmpty(data.lastName)) {
+    errors.lastName = 'last name field is required';
   }
 
   if (Validator.isEmpty(data.email)) {
@@ -42,11 +41,11 @@ module.exports = function validateRegisterInput(data) {
     errors.password = 'Password must be at least 6 characters';
   }
 
-  if (Validator.isEmpty(data.password2)) {
+  if (Validator.isEmpty(data.rpassword)) {
     errors.password2 = 'Confirm Password field is required';
   }
 
-  if (!Validator.equals(data.password, data.password2)) {
+  if (!Validator.equals(data.password, data.rpassword)) {
     errors.password2 = 'Passwords must match';
   }
 
