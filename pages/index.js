@@ -8,7 +8,7 @@ import Header from '../components/header'
 
 const Home = () => {
   const user = useUser()
-  console.log("user", user)
+  console.log("user*****", user)
   return (
     <Page className={styles.container}>
       <Head>
@@ -26,7 +26,8 @@ const Home = () => {
           <>
             <p>Currently logged in as:</p>
             {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-            <pre>{user.email}</pre>
+            <pre>{user.firstname}</pre>
+            <pre>{user.lastname}</pre>
           </>
         )}
       </main>

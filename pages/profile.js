@@ -2,15 +2,7 @@ import { useUser } from '../lib/hooks'
 import Layout from '../components/layout'
 
 const Profile = () => {
-  const mongoDBUserObj = useUser({ redirectTo: '/login' })
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  let user = null
-  if (mongoDBUserObj) {
-    user = JSON.parse(JSON.stringify(mongoDBUserObj)).user
-    console.log(user)
-  } else {
-    console.log("not yet")
-  }
+  const user = useUser({ redirectTo: '/login' })
 
   const profileDetails = () => {
     if (user) {
