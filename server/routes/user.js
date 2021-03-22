@@ -12,15 +12,10 @@ function routes(app) {
   router.post("/user", (req, res) => {
     // res.end("this is the user route");
     console.log("express req", req.body)
-    User.findOne({ email: req.body.email })
-      .then(user => {
-        console.log("express", user)
-        if (user) {
-          return user
-        } else {
-          return res.status(400).json({ email: "No user registered with this email address" })
-        }
-      });
+    const currentUser = User.findOne(req.body.email)
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
+    return currentUser
   })
 
   router.post('/register', (req, res) => {

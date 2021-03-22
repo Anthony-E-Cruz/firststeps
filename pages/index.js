@@ -26,7 +26,6 @@ const Home = () => {
           <>
             <p>Currently logged in as:</p>
             {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-            <pre>{console.log("pre", user)}</pre>
             <pre>{user.email}</pre>
           </>
         )}
